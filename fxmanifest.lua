@@ -8,8 +8,11 @@ ui_page "nui/index.html"
 
 files {
     "nui/**/*",
-    "nui/sounds/*"
+    "nui/sounds/*",
+    "locales/*.lua"
 }
+
+shared_script "@zyke_lib/imports.lua"
 
 shared_scripts {
     "shared/config.lua"
@@ -28,3 +31,5 @@ server_scripts {
     "server/functions.lua",
     "server/eventhandler.lua"
 }
+
+dependency "zyke_lib"

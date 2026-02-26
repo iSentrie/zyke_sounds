@@ -1,0 +1,3 @@
+return {
+    ["soundConfigTitle"] = "Configurare sunet",
+}

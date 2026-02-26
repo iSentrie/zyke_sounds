@@ -1,9 +1,11 @@
 import { listen, send } from "../utils/nui";
 import { useModalContext } from "../context/ModalContext";
+import { useTranslation } from "../context/Translation";
 import Modal from "./Modal";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 
 const SoundConfigMenu = () => {
+	const T = useTranslation();
 	const { openModal, closeModal } = useModalContext();
 
 	listen("SetOpen", (val: boolean) => {
@@ -18,7 +20,7 @@ const SoundConfigMenu = () => {
 		<Modal
 			id="soundConfig"
 			icon={<VolumeUpIcon />}
-			title="Sound Configuration"
+			title={T("soundConfigTitle")}
 			onClose={() => send("CloseMenu")}
 			closeButton
 			modalStyling={{

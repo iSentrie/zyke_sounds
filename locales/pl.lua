@@ -1,0 +1,3 @@
+return {
+    ["soundConfigTitle"] = "Konfiguracja dźwięku",
+}

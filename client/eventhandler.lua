@@ -30,6 +30,8 @@ RegisterNUICallback("Eventhandler", function(passed, cb)
     elseif (event == "CloseMenu") then
         SetNuiFocus(false, false)
         cb("ok")
+    elseif (event == "GetStrings") then
+        return cb(Translations)
     end
 end)
 
