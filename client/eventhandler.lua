@@ -27,6 +27,9 @@ RegisterNUICallback("Eventhandler", function(passed, cb)
     if (event == "SoundEnded") then
         Cache.activeSounds[data.soundId] = nil
         cb("ok")
+    elseif (event == "CloseMenu") then
+        SetNuiFocus(false, false)
+        cb("ok")
     end
 end)
 

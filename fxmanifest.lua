@@ -19,6 +19,7 @@ client_scripts {
     "client/main.lua",
     "client/functions.lua",
     "client/eventhandler.lua",
+    "client/menu.lua",
     "client/debug.lua",
 }
 
