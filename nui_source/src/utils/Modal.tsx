@@ -40,6 +40,7 @@ interface ModalProps {
 		exit?: TargetAndTransition;
 	};
 	onExited?: () => void;
+	footer?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -70,6 +71,7 @@ const Modal: React.FC<ModalProps> = ({
 	headerStyling,
 	modalAnimation,
 	onExited,
+	footer,
 }) => {
 	const { modalsOpen } = useModalContext();
 	const [open, setOpen] = useState(false);
@@ -222,6 +224,7 @@ const Modal: React.FC<ModalProps> = ({
 								children={children}
 								loadingContent={loadingContent}
 							/>
+							{footer && <Footer text={footer} />}
 						</div>
 					</motion.div>
 				)}
@@ -515,6 +518,40 @@ const ChildContainer: React.FC<ChildContainerProps> = ({
 				visible={loadingContent ? true : false}
 			></LoadingOverlay>
 			{children}
+		</div>
+	);
+};
+
+const Footer: React.FC<{ text: string }> = ({ text }) => {
+	return (
+		<div
+			className="footer-container"
+			style={{
+				width: "100%",
+				boxSizing: "border-box",
+				position: "relative",
+				padding: "0.25rem 0.75rem",
+				height: "3.5rem",
+				display: "flex",
+				justifyContent: "space-between",
+				alignItems: "center",
+
+				background: "rgba(var(--dark4))",
+				boxShadow: "0 2px 3px 0 rgba(0, 0, 0, 0.2)",
+				borderTop: "1px solid rgba(var(--grey2))",
+			}}
+		>
+			<p
+				style={{
+					position: "relative",
+					color: "rgba(var(--secText))",
+					fontSize: "1.3rem",
+					fontWeight: "500",
+					margin: 0,
+				}}
+			>
+				{text}
+			</p>
 		</div>
 	);
 };

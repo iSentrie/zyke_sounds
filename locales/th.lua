@@ -3,4 +3,5 @@ return {
     ["volumeLabel"] = "ระดับเสียง",
     ["searchSounds"] = "ค้นหาเสียง...",
     ["noSoundsFound"] = "ไม่พบเสียง",
+    ["soundCount"] = "%s เสียง",
 }

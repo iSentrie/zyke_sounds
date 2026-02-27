@@ -3,4 +3,5 @@ return {
     ["volumeLabel"] = "Volume",
     ["searchSounds"] = "Cerca suoni...",
     ["noSoundsFound"] = "Nessun suono trovato",
+    ["soundCount"] = "%s suono/i",
 }

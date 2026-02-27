@@ -120,6 +120,7 @@ const SoundConfigMenu = () => {
 			modalStyling={{
 				width: "50rem",
 			}}
+			footer={T("soundCount", [String(filteredSounds.length)])}
 		>
 			<div
 				style={{
@@ -175,7 +176,7 @@ const SoundConfigMenu = () => {
 							style={{
 								textAlign: "center",
 								color: "rgba(var(--secText))",
-								padding: "1.8rem 0 0 0",
+								padding: "1.2rem 0 0.8rem 0",
 								fontSize: "1.4rem",
 							}}
 						>
