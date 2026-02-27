@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styling/base_defaults.css";
 import "./styling/index.css";
 import "./styling/text.css";
+import "./styling/inputs.css";
 import App from "./components/App";
 
 // Mount the React app for the configuration UI

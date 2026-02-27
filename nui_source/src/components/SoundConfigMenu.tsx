@@ -1,10 +1,12 @@
-import { memo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { listen, send, callback } from "../utils/nui";
 import { useModalContext } from "../context/ModalContext";
 import { useTranslation } from "../context/Translation";
 import Modal from "./Modal";
 import Slider from "./Slider";
+import DebouncedTextInput from "./DebouncedTextInput";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface SoundEntry {
 	name: string;
@@ -33,9 +35,18 @@ const SoundConfigMenu = () => {
 	const { openModal, closeModal } = useModalContext();
 	const [sounds, setSounds] = useState<SoundEntry[]>([]);
 	const [loadingSounds, setLoadingSounds] = useState(false);
+	const [search, setSearch] = useState("");
+
+	const filteredSounds = useMemo(() => {
+		if (!search) return sounds;
+
+		const lower = search.toLowerCase();
+		return sounds.filter((s) => s.name.toLowerCase().includes(lower));
+	}, [sounds, search]);
 
 	listen("SetOpen", async (val: boolean) => {
 		if (val) {
+			setSearch("");
 			setLoadingSounds(true);
 			openModal("soundConfig");
 
@@ -62,6 +73,14 @@ const SoundConfigMenu = () => {
 				width: "50rem",
 			}}
 		>
+			<DebouncedTextInput
+				value={search}
+				onChange={setSearch}
+				placeholder={T("searchSounds")}
+				icon={<SearchIcon />}
+				style={{ width: "100%", marginBottom: "0.5rem" }}
+				delay={100}
+			/>
 			<div
 				style={{
 					maxHeight: "60vh",
@@ -78,13 +97,26 @@ const SoundConfigMenu = () => {
 						padding: "0 0 1.5rem 0",
 					}}
 				>
-					{sounds.map((sound) => (
-						<SoundRow
-							key={sound.name}
-							name={sound.name}
-							initialVolume={sound.volume}
-						/>
-					))}
+					{filteredSounds.length === 0 ? (
+						<p
+							style={{
+								textAlign: "center",
+								color: "rgba(var(--secText))",
+								padding: "1.8rem 0 0 0",
+								fontSize: "1.4rem",
+							}}
+						>
+							{T("noSoundsFound")}
+						</p>
+					) : (
+						filteredSounds.map((sound) => (
+							<SoundRow
+								key={sound.name}
+								name={sound.name}
+								initialVolume={sound.volume}
+							/>
+						))
+					)}
 				</div>
 			</div>
 		</Modal>

@@ -1,4 +1,6 @@
 return {
     ["soundConfigTitle"] = "Configuração de som",
     ["volumeLabel"] = "Volume",
+    ["searchSounds"] = "Pesquisar sons...",
+    ["noSoundsFound"] = "Nenhum som encontrado",
 }
